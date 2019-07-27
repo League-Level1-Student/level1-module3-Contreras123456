@@ -27,5 +27,11 @@ public class Gridworld {
 		Location location4 = new Location(4,5);
 		world.add(location3, flower);
 		world.add(location4, flower2);
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				world.add(new Location(i,j), new Flower());
+
+			}
+		}
 	}
 }
