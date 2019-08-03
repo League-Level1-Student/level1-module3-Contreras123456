@@ -6,13 +6,14 @@
   int upperPipeHeight = (int) random(100,300);
   int pipeGap = 150;
   int lowerY = upperPipeHeight + pipeGap;
-  boolean xd = false;
+  boolean xd = true;
+  int score = 0;
  void setup(){
   size(400,500);
   pipe = 400;
 }
 void draw(){
-  if(!xd) {
+  if(xd) {
     background(3,255,236);
     fill(254,255,3);
     stroke(0,0,0);
@@ -28,9 +29,16 @@ void draw(){
       teleportPipes();
     }
     
-    xd=intersectsPipes();
-    
+    if(hitGround()||intersectsPipes()){
+      xd = false;
+    }
+    if(x==pipe){
+      score++;
+    }
   }
+  rect(0,450,1000,100);
+  fill(0,0,0);
+  text(score, 150, 10);
 }
 
 void mousePressed(){
@@ -47,4 +55,11 @@ boolean intersectsPipes() {
         else if (y>lowerY && x > pipe && x < (pipe+50)) {
             return true; }
         else { return false; }
+}
+boolean hitGround(){
+  if(y>=450){
+    return true;
+  } else {
+    return false;
+  }
 }
